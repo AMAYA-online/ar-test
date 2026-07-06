@@ -1,0 +1,21 @@
+{
+  "_instructions": "Add one entry per AR code. 'code' is what appears in your book's URL (yourbookname.com/CODE). 'primary' is the main link (e.g. Vimeo). 'backup' is your Internet Archive fallback. Update 'primary' any time you switch hosts — the printed codes never change.",
+
+  "ch1-intro-video": {
+    "primary": "https://vimeo.com/REPLACE_WITH_YOUR_VIMEO_ID",
+    "backup": "https://archive.org/details/REPLACE_WITH_YOUR_ARCHIVE_ID",
+    "description": "Chapter 1 - Introduction video"
+  },
+  "ch2-audio-narration": {
+    "primary": "https://vimeo.com/REPLACE_WITH_YOUR_VIMEO_ID",
+    "backup": "https://archive.org/details/REPLACE_WITH_YOUR_ARCHIVE_ID",
+    "description": "Chapter 2 - Audio narration"
+  },
+  "ch3-demo-video": {
+    "primary": "https://vimeo.com/REPLACE_WITH_YOUR_VIMEO_ID",
+    "backup": "https://archive.org/details/REPLACE_WITH_YOUR_ARCHIVE_ID",
+    "description": "Chapter 3 - Demonstration video"
+  }
+}
+To use this: select all the text above, copy it, paste it into GitHub's "Create new file" box with the filename media-links.json, then commit.
+That's all four files. Once they're committed, the next step is replacing the placeholder text (REPLACE_WITH_YOUR_VIMEO_ID and REPLACE_WITH_YOUR_ARCHIVE_ID) with your real test links — you can edit this file directly in GitHub's browser editor by clicking the pencil icon on the file. Do you have a real Vimeo/YouTube link and Archive.org link ready to drop in, or should we get your Archive.org test upload done first?
