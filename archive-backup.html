@@ -1,0 +1,56 @@
+html<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Backup Media Access (Archive.org)</title>
+<style>
+  body { font-family: -apple-system, sans-serif; max-width: 640px; margin: 40px auto; padding: 0 20px; color: #333; }
+  h1 { font-size: 1.4em; }
+  p.note { background: #f6f6f6; padding: 14px; border-radius: 6px; font-size: 0.92em; }
+  ul { list-style: none; padding: 0; }
+  li { padding: 16px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 16px; }
+  .qr { width: 90px; height: 90px; flex-shrink: 0; }
+  a { color: #06c; text-decoration: none; font-weight: 600; }
+  .desc { display: block; color: #666; font-size: 0.85em; margin-top: 2px; font-weight: normal; }
+</style>
+</head>
+<body>
+  <h1>Backup Media Access</h1>
+  <p class="note">
+    These codes are <strong>not printed in the book</strong>. They exist only here, on this
+    page, as a permanent backup in case a video link in the book ever stops working.
+    Each one links directly to the archival copy on Archive.org, a nonprofit
+    library that preserves files long-term. Scan or click to view.
+  </p>
+  <ul id="list"></ul>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+fetch('media-links.json')
+  .then(r => r.json())
+  .then(data => {
+    const list = document.getElementById('list');
+    for (const [code, entry] of Object.entries(data)) {
+      if (code.startsWith('_') || !entry.backup) continue;
+
+      const li = document.createElement('li');
+
+      const qrDiv = document.createElement('div');
+      qrDiv.className = 'qr';
+      li.appendChild(qrDiv);
+
+      const textDiv = document.createElement('div');
+      textDiv.innerHTML = `<a href="${entry.backup}">${entry.description || code}</a><span class="desc">${code} — archive.org backup</span>`;
+      li.appendChild(textDiv);
+
+      list.appendChild(li);
+
+      // Generates a scannable QR code client-side for this backup link.
+      new QRCode(qrDiv, { text: entry.backup, width: 90, height: 90 });
+    }
+  });
+</script>
+</body>
+</html>
+To use this: select all the text above, copy it, paste it into GitHub's "Create new file" box with the filename archive-backup.html, then commit.
+Want me to paste media-links.json next — the last file, and the one you'll actually edit with your real Vimeo and Archive.org links?
